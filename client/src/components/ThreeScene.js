@@ -7,98 +7,153 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 // 1. BESPOKE PROCEDURAL FURNITURE & ARCHITECTURAL MODELS
 // ==========================================
 
-// A Modernist Sofa/Couch Component
+// A Cozy Modernist Sofa Component
 export function SofaModel({ position = [0, 0, 0], wireframe = false, scale = 1 }) {
-  const colorBase = wireframe ? '#b88d30' : '#806753';
-  const colorCushion = wireframe ? '#b88d30' : '#a38a75';
-  const colorGold = '#b88d30';
+  const colorFabric = wireframe ? '#b88d30' : '#efebe0'; // Cream/Beige
+  const colorWood = wireframe ? '#b88d30' : '#c39573';   // Light Oak Wood
+  const colorPillow = wireframe ? '#b88d30' : '#c85a17'; // Burnt Orange
 
   return (
     <group position={position} scale={scale}>
-      {/* Base Support Frame */}
-      <mesh position={[0, -0.3, 0]}>
-        <boxGeometry args={[3.2, 0.25, 1.3]} />
-        <meshStandardMaterial color={colorBase} roughness={0.7} metalness={0.1} wireframe={wireframe} />
+      {/* Base Cushion */}
+      <mesh position={[0, -0.1, 0]}>
+        <boxGeometry args={[3.0, 0.35, 1.3]} />
+        <meshStandardMaterial color={colorFabric} roughness={0.9} wireframe={wireframe} />
       </mesh>
 
-      {/* Seat Cushions */}
-      <mesh position={[-0.78, -0.05, 0.05]}>
-        <boxGeometry args={[1.4, 0.25, 1.1]} />
-        <meshStandardMaterial color={colorCushion} roughness={0.6} metalness={0.1} wireframe={wireframe} />
-      </mesh>
-      <mesh position={[0.78, -0.05, 0.05]}>
-        <boxGeometry args={[1.4, 0.25, 1.1]} />
-        <meshStandardMaterial color={colorCushion} roughness={0.6} metalness={0.1} wireframe={wireframe} />
-      </mesh>
-
-      {/* Backrest Panel */}
-      <mesh position={[0, 0.5, -0.52]}>
-        <boxGeometry args={[3.2, 0.85, 0.2]} />
-        <meshStandardMaterial color={colorBase} roughness={0.7} metalness={0.1} wireframe={wireframe} />
+      {/* Backrest */}
+      <mesh position={[0, 0.45, -0.45]}>
+        <boxGeometry args={[2.8, 0.8, 0.4]} />
+        <meshStandardMaterial color={colorFabric} roughness={0.9} wireframe={wireframe} />
       </mesh>
 
       {/* Armrests */}
-      <mesh position={[-1.58, 0.15, 0]}>
-        <boxGeometry args={[0.2, 0.7, 1.3]} />
-        <meshStandardMaterial color={colorBase} roughness={0.7} metalness={0.1} wireframe={wireframe} />
+      <mesh position={[-1.4, 0.2, 0]}>
+        <boxGeometry args={[0.3, 0.6, 1.25]} />
+        <meshStandardMaterial color={colorFabric} roughness={0.9} wireframe={wireframe} />
       </mesh>
-      <mesh position={[1.58, 0.15, 0]}>
-        <boxGeometry args={[0.2, 0.7, 1.3]} />
-        <meshStandardMaterial color={colorBase} roughness={0.7} metalness={0.1} wireframe={wireframe} />
+      <mesh position={[1.4, 0.2, 0]}>
+        <boxGeometry args={[0.3, 0.6, 1.25]} />
+        <meshStandardMaterial color={colorFabric} roughness={0.9} wireframe={wireframe} />
       </mesh>
 
-      {/* Gold Cylindrical Legs */}
+      {/* Decorative Pillows */}
+      {/* White Pillow */}
+      <mesh position={[-0.8, 0.25, -0.15]} rotation={[0.2, 0.3, 0.1]}>
+        <boxGeometry args={[0.55, 0.55, 0.15]} />
+        <meshStandardMaterial color="#ffffff" roughness={0.9} wireframe={wireframe} />
+      </mesh>
+      {/* Burnt Orange Pillow */}
+      <mesh position={[0.7, 0.25, -0.15]} rotation={[0.2, -0.2, -0.05]}>
+        <boxGeometry args={[0.6, 0.6, 0.15]} />
+        <meshStandardMaterial color={colorPillow} roughness={0.9} wireframe={wireframe} />
+      </mesh>
+
+      {/* Wooden Legs */}
       {[
-        [-1.4, -0.5, 0.5],
-        [1.4, -0.5, 0.5],
-        [-1.4, -0.5, -0.5],
-        [1.4, -0.5, -0.5]
+        [-1.3, -0.4, 0.4],
+        [1.3, -0.4, 0.4],
+        [-1.3, -0.4, -0.4],
+        [1.3, -0.4, -0.4]
       ].map((legPos, idx) => (
         <mesh key={idx} position={legPos}>
-          <cylinderGeometry args={[0.04, 0.03, 0.3, 8]} />
-          <meshStandardMaterial color={colorGold} metalness={0.9} roughness={0.1} wireframe={wireframe} />
+          <cylinderGeometry args={[0.04, 0.02, 0.3, 16]} />
+          <meshStandardMaterial color={colorWood} roughness={0.8} wireframe={wireframe} />
         </mesh>
       ))}
     </group>
   );
 }
 
-// A Carrara Marble Coffee Table Component
+// A Round Light Wood Coffee Table Component
 export function CoffeeTableModel({ position = [0, 0, 0], wireframe = false, scale = 1 }) {
-  const colorGold = '#b88d30';
-  const colorTop = wireframe ? '#b88d30' : '#ffffff';
+  const colorWood = wireframe ? '#b88d30' : '#e6bc98'; // Light Wood
+  const colorVase = wireframe ? '#b88d30' : '#f5f0e6'; // Off-white vase
 
   return (
     <group position={position} scale={scale}>
-      {/* Marble Table Slab */}
-      <mesh position={[0, -0.3, 0]}>
-        <boxGeometry args={[1.8, 0.08, 1.0]} />
-        <meshStandardMaterial color={colorTop} roughness={0.05} metalness={wireframe ? 0.9 : 0.1} wireframe={wireframe} />
+      {/* Round Wooden Table Top */}
+      <mesh position={[0, 0, 0]}>
+        <cylinderGeometry args={[1.0, 1.0, 0.1, 48]} />
+        <meshStandardMaterial color={colorWood} roughness={0.8} metalness={0.0} wireframe={wireframe} />
       </mesh>
 
-      {/* Table Legs (Brushed Gold Columns) */}
+      {/* Thick Cylindrical Base */}
+      <mesh position={[0, -0.4, 0]}>
+        <cylinderGeometry args={[0.5, 0.5, 0.7, 48]} />
+        <meshStandardMaterial color={colorWood} roughness={0.85} metalness={0.0} wireframe={wireframe} />
+      </mesh>
+
+      {/* Decorative Vases on Table */}
+      <group position={[-0.2, 0.15, 0.1]}>
+        <mesh>
+          <sphereGeometry args={[0.12, 24, 24]} />
+          <meshStandardMaterial color={colorVase} roughness={0.9} wireframe={wireframe} />
+        </mesh>
+        {/* Wheat stalks/dried flowers */}
+        {[0, 1, 2].map((i) => (
+          <mesh key={i} position={[0, 0.15, 0]} rotation={[0.2, i * (Math.PI / 1.5), 0.1]}>
+            <cylinderGeometry args={[0.005, 0.005, 0.25, 8]} />
+            <meshStandardMaterial color="#d4b58a" wireframe={wireframe} />
+          </mesh>
+        ))}
+      </group>
+      
+      {/* Small Bowl */}
+      <mesh position={[0.25, 0.08, -0.1]}>
+        <cylinderGeometry args={[0.15, 0.1, 0.08, 32]} />
+        <meshStandardMaterial color="#e0d6c8" roughness={0.9} wireframe={wireframe} />
+      </mesh>
+    </group>
+  );
+}
+
+// Side Cabinet with Round Lamp
+export function SideCabinetWithLampModel({ position = [0, 0, 0], wireframe = false, scale = 1 }) {
+  const colorWood = wireframe ? '#b88d30' : '#cba279';
+  const colorLampBase = wireframe ? '#b88d30' : '#e3d7c5';
+  const colorLampShade = wireframe ? '#b88d30' : '#f8f2e6';
+
+  return (
+    <group position={position} scale={scale}>
+      {/* Rattan/Cane Cabinet Box */}
+      <mesh position={[0, -0.2, 0]}>
+        <boxGeometry args={[0.9, 1.2, 0.8]} />
+        <meshStandardMaterial color={colorWood} roughness={0.9} wireframe={wireframe} />
+      </mesh>
+      
+      {/* Cabinet Legs */}
       {[
-        [-0.75, -0.5, 0.4],
-        [0.75, -0.5, 0.4],
-        [-0.75, -0.5, -0.4],
-        [0.75, -0.5, -0.4]
-      ].map((legPos, idx) => (
-        <mesh key={idx} position={legPos}>
-          <cylinderGeometry args={[0.03, 0.03, 0.35, 8]} />
-          <meshStandardMaterial color={colorGold} metalness={0.9} roughness={0.1} wireframe={wireframe} />
+        [-0.35, -0.9, 0.3], [0.35, -0.9, 0.3],
+        [-0.35, -0.9, -0.3], [0.35, -0.9, -0.3]
+      ].map((pos, i) => (
+        <mesh key={i} position={pos}>
+          <cylinderGeometry args={[0.02, 0.015, 0.3, 16]} />
+          <meshStandardMaterial color={colorWood} roughness={0.8} wireframe={wireframe} />
         </mesh>
       ))}
 
-      {/* Decorative Vase on Table */}
-      <group position={[0, -0.15, 0]}>
-        <mesh>
-          <cylinderGeometry args={[0.06, 0.06, 0.2, 10]} />
-          <meshStandardMaterial color={colorGold} metalness={0.85} roughness={0.1} wireframe={wireframe} />
+      {/* Lamp on top */}
+      <group position={[0, 0.4, 0]}>
+        {/* Lamp Base (Round) */}
+        <mesh position={[0, 0.15, 0]}>
+          <sphereGeometry args={[0.18, 32, 32]} />
+          <meshStandardMaterial color={colorLampBase} roughness={0.7} wireframe={wireframe} />
         </mesh>
-        <mesh position={[0, 0.15, 0]} rotation={[0.4, 0, 0.3]}>
-          <cylinderGeometry args={[0.01, 0.01, 0.18, 4]} />
-          <meshStandardMaterial color={wireframe ? colorGold : '#5c4033'} wireframe={wireframe} />
+        {/* Lamp Neck */}
+        <mesh position={[0, 0.35, 0]}>
+          <cylinderGeometry args={[0.02, 0.02, 0.1, 16]} />
+          <meshStandardMaterial color={colorWood} wireframe={wireframe} />
         </mesh>
+        {/* Lamp Shade (Conical/Cylindrical) */}
+        <mesh position={[0, 0.55, 0]}>
+          <cylinderGeometry args={[0.2, 0.28, 0.35, 32]} />
+          <meshStandardMaterial color={colorLampShade} roughness={1.0} emissive={colorLampShade} emissiveIntensity={0.2} wireframe={wireframe} />
+        </mesh>
+        {/* Lamp Light */}
+        {!wireframe && (
+          <pointLight position={[0, 0.5, 0]} intensity={1.2} distance={3} color="#fff2e0" />
+        )}
       </group>
     </group>
   );
@@ -211,6 +266,137 @@ export function SignatureLoungeChair({ position = [0, 0, 0], wireframe = false, 
           </Float>
         )}
       </group>
+    </group>
+  );
+}
+
+// Modern Design Studio Showcase Installation - Unique 3D Art Piece for About Page
+export function ModernDesignInstallation({ position = [0, 0, 0], scale = 1 }) {
+  const colorGold = '#b88d30';
+  const colorIvory = '#FAF6F0';
+  const frameCubeRef = useRef();
+  const floatingCrystalRef = useRef();
+  const geometricElementRef = useRef();
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    
+    // Main frame subtle rotation
+    if (frameCubeRef.current) {
+      frameCubeRef.current.rotation.y = time * 0.25;
+      frameCubeRef.current.rotation.x = Math.sin(time * 0.3) * 0.1;
+    }
+    
+    // Floating crystal element (spinning only)
+    if (floatingCrystalRef.current) {
+      floatingCrystalRef.current.rotation.x = time * 0.6;
+      floatingCrystalRef.current.rotation.y = time * 0.8;
+      floatingCrystalRef.current.rotation.z = time * 0.4;
+    }
+    
+    // Geometric element rotation
+    if (geometricElementRef.current) {
+      geometricElementRef.current.rotation.z = time * 0.5;
+      geometricElementRef.current.rotation.x = Math.cos(time * 0.4) * 0.15;
+    }
+  });
+
+  return (
+    <group position={position} scale={scale}>
+      {/* Outer Wireframe Cube Frame - Design concept */}
+      <mesh ref={frameCubeRef} position={[0, 0.3, 0]}>
+        <boxGeometry args={[2.2, 2.2, 2.2]} />
+        <meshStandardMaterial 
+          color={colorGold} 
+          wireframe 
+          emissive={colorGold}
+          emissiveIntensity={0.15}
+          opacity={0.4} 
+          transparent 
+        />
+      </mesh>
+
+      {/* Solid Inner Cube - Minimalist base form */}
+      <mesh position={[0, -0.4, 0]}>
+        <boxGeometry args={[0.6, 0.6, 0.6]} />
+        <meshStandardMaterial color={colorGold} metalness={0.85} roughness={0.1} />
+      </mesh>
+
+      {/* Central Floating Geometric Crystal - Dynamic focal point */}
+      <group ref={floatingCrystalRef} position={[0, 0.5, 0]}>
+        {/* Wireframe icosahedron */}
+        <mesh position={[0, 0, 0]}>
+          <icosahedronGeometry args={[0.35, 1]} />
+          <meshStandardMaterial 
+            color={colorGold} 
+            wireframe 
+            emissiveIntensity={0.3}
+            emissive={colorGold}
+          />
+        </mesh>
+        
+        {/* Solid inner sphere with glow */}
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[0.18, 16, 16]} />
+          <meshStandardMaterial 
+            color={colorIvory} 
+            emissive={colorGold}
+            emissiveIntensity={0.4}
+            roughness={0.05}
+            metalness={0.8}
+          />
+        </mesh>
+
+        {/* Light glow */}
+        <pointLight position={[0, 0, 0]} intensity={1.5} distance={2.5} color={colorGold} />
+      </group>
+
+      {/* Rotating Geometric Ring Elements */}
+      <group ref={geometricElementRef} position={[0, 0.3, 0]}>
+        {/* Horizontal golden ring */}
+        <mesh rotation={[Math.PI / 2.5, 0, 0]}>
+          <torusGeometry args={[0.55, 0.025, 8, 48]} />
+          <meshStandardMaterial color={colorGold} metalness={0.95} roughness={0.05} />
+        </mesh>
+
+        {/* Vertical golden ring - perpendicular */}
+        <mesh rotation={[0, 0, Math.PI / 3]}>
+          <torusGeometry args={[0.55, 0.025, 8, 48]} />
+          <meshStandardMaterial color={colorGold} metalness={0.9} roughness={0.08} />
+        </mesh>
+      </group>
+
+      {/* Floating Accent Spheres - Design Philosophy representation */}
+      {[
+        { pos: [0.8, 0.2, 0.8], size: 0.12 },
+        { pos: [-0.8, 0.1, -0.8], size: 0.1 },
+        { pos: [0.8, -0.2, -0.8], size: 0.11 }
+      ].map((elem, idx) => (
+        <Float key={idx} speed={1.2 + idx * 0.3} floatIntensity={0.3} rotationIntensity={0.4}>
+          <mesh position={elem.pos}>
+            <sphereGeometry args={[elem.size, 12, 12]} />
+            <meshStandardMaterial 
+              color={colorGold} 
+              metalness={0.88} 
+              roughness={0.12}
+              emissive={colorGold}
+              emissiveIntensity={0.1}
+            />
+          </mesh>
+        </Float>
+      ))}
+
+      {/* Base Pedestal Platform */}
+      <mesh position={[0, -0.8, 0]}>
+        <cylinderGeometry args={[0.8, 0.8, 0.1, 24]} />
+        <meshStandardMaterial color={colorGold} metalness={0.85} roughness={0.15} />
+      </mesh>
+
+      {/* Subtle Ground Shadow Effect */}
+      <mesh position={[0, -0.85, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[1.0, 24]} />
+        <meshBasicMaterial color="#000000" opacity={0.15} transparent />
+      </mesh>
     </group>
   );
 }
@@ -378,10 +564,9 @@ export function AdvancedFurnitureModel({ position = [0, -1.2, 0], scale = 1, wir
   // On error or not available -> fallback procedural composition
   return (
     <group position={position} scale={scale}>
-      <SofaModel position={[-0.6, 0, -0.4]} scale={1.08} wireframe={wireframe} />
-      <CoffeeTableModel position={[0.18, 0, 0.9]} scale={1.05} wireframe={wireframe} />
-      <SignatureLoungeChair position={[1.9, 0, 0.4]} scale={0.95} wireframe={wireframe} />
-      <ArchitecturalColumnPedestal position={[-2.0, 0, 0.6]} scale={0.9} rotatingSculpture={true} />
+      <SofaModel position={[-0.8, 0, -0.4]} scale={1.0} wireframe={wireframe} />
+      <CoffeeTableModel position={[0.2, 0.2, 1.2]} scale={1.0} wireframe={wireframe} />
+      <SideCabinetWithLampModel position={[2.1, 0, -0.5]} scale={1.0} wireframe={wireframe} />
     </group>
   );
 }
@@ -451,89 +636,148 @@ function DiningRoomLayoutScene() {
     }
   });
 
+  const woodColor = '#4a3525';
+  const fabricColor = '#eaddcf';
+
   return (
-    <group ref={groupRef} position={[0, -0.3, 0]}>
-      {/* High Marble Kitchen Counter Table */}
-      <mesh position={[0, -0.2, 0]}>
-        <boxGeometry args={[2.5, 0.12, 1.2]} />
-        <meshStandardMaterial color="#ffffff" roughness={0.06} metalness={0.1} />
-      </mesh>
-      {/* Gold Table Pedestal Shaft */}
-      <mesh position={[-0.8, -0.85, 0]}>
-        <cylinderGeometry args={[0.1, 0.1, 1.2, 16]} />
-        <meshStandardMaterial color="#b88d30" metalness={0.9} roughness={0.1} />
-      </mesh>
-      <mesh position={[0.8, -0.85, 0]}>
-        <cylinderGeometry args={[0.1, 0.1, 1.2, 16]} />
-        <meshStandardMaterial color="#b88d30" metalness={0.9} roughness={0.1} />
-      </mesh>
-      {/* Base Pedestals */}
-      <mesh position={[-0.8, -1.45, 0]}>
-        <cylinderGeometry args={[0.3, 0.3, 0.04, 16]} />
-        <meshStandardMaterial color="#b88d30" metalness={0.9} roughness={0.1} />
-      </mesh>
-      <mesh position={[0.8, -1.45, 0]}>
-        <cylinderGeometry args={[0.3, 0.3, 0.04, 16]} />
-        <meshStandardMaterial color="#b88d30" metalness={0.9} roughness={0.1} />
+    <group ref={groupRef} position={[0, -0.4, 0]}>
+      {/* Modern Dining Table Top */}
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[2.8, 0.1, 1.4]} />
+        <meshStandardMaterial color="#ffffff" roughness={0.05} metalness={0.1} />
       </mesh>
 
-      {/* Gold Bar Stools */}
+      {/* Sculptural Wooden Base (Crossed/Intertwined) */}
+      <mesh position={[-0.25, -0.7, 0]} rotation={[0, 0, 0.4]}>
+        <boxGeometry args={[0.35, 1.6, 0.6]} />
+        <meshStandardMaterial color={woodColor} roughness={0.8} metalness={0.05} />
+      </mesh>
+      <mesh position={[0.25, -0.7, 0]} rotation={[0, 0, -0.4]}>
+        <boxGeometry args={[0.35, 1.6, 0.6]} />
+        <meshStandardMaterial color={woodColor} roughness={0.8} metalness={0.05} />
+      </mesh>
+
+      {/* Decorative Vase on Table */}
+      <group position={[0, 0.25, 0]}>
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[0.15, 32, 32]} />
+          <meshStandardMaterial color="#8b7355" roughness={0.9} />
+        </mesh>
+        <mesh position={[0, 0.15, 0]}>
+          <cylinderGeometry args={[0.08, 0.1, 0.15, 16]} />
+          <meshStandardMaterial color="#8b7355" roughness={0.9} />
+        </mesh>
+      </group>
+
+      {/* Modern Curved Chairs */}
       {[
-        [-0.7, -0.7, 0.85, Math.PI / 6],
-        [0.7, -0.7, 0.85, -Math.PI / 6],
-        [0, -0.7, -0.85, Math.PI]
-      ].map((stool, idx) => (
-        <group key={idx} position={[stool[0], stool[1], stool[2]]} rotation={[0, stool[3], 0]}>
+        [-0.8, -0.4, 0.9, 0],       // Front left
+        [0.8, -0.4, 0.9, 0],        // Front right
+        [-0.8, -0.4, -0.9, Math.PI], // Back left
+        [0.8, -0.4, -0.9, Math.PI]   // Back right
+      ].map((chair, idx) => (
+        <group key={idx} position={[chair[0], chair[1], chair[2]]} rotation={[0, chair[3], 0]}>
           {/* Seat Cushion */}
-          <mesh>
-            <cylinderGeometry args={[0.22, 0.22, 0.06, 16]} />
-            <meshStandardMaterial color="#a38a75" roughness={0.6} metalness={0.1} />
+          <mesh position={[0, 0, 0]}>
+            <boxGeometry args={[0.6, 0.1, 0.5]} />
+            <meshStandardMaterial color={fabricColor} roughness={0.9} />
           </mesh>
-          {/* Stool Stand */}
-          <mesh position={[0, -0.35, 0]}>
-            <cylinderGeometry args={[0.02, 0.02, 0.65, 8]} />
-            <meshStandardMaterial color="#b88d30" metalness={0.9} roughness={0.1} />
+          {/* Wooden Legs */}
+          {[-0.25, 0.25].map((x, i) =>
+            [-0.2, 0.2].map((z, j) => (
+              <mesh key={`${i}-${j}`} position={[x, -0.5, z]}>
+                <cylinderGeometry args={[0.025, 0.02, 1.0, 8]} />
+                <meshStandardMaterial color={woodColor} roughness={0.8} />
+              </mesh>
+            ))
+          )}
+          {/* Curved Backrest */}
+          <mesh position={[0, 0.35, -0.25]}>
+            <cylinderGeometry args={[0.35, 0.35, 0.25, 32, 1, false, Math.PI, Math.PI]} />
+            <meshStandardMaterial color={fabricColor} roughness={0.9} side={2} />
           </mesh>
-          {/* Stool Ring Base */}
-          <mesh position={[0, -0.68, 0]}>
-            <cylinderGeometry args={[0.2, 0.2, 0.02, 16]} />
-            <meshStandardMaterial color="#b88d30" metalness={0.9} roughness={0.1} />
+          {/* Backrest Wooden Support */}
+          <mesh position={[-0.35, 0.25, -0.25]}>
+             <cylinderGeometry args={[0.02, 0.02, 0.5, 8]} />
+             <meshStandardMaterial color={woodColor} roughness={0.8} />
+          </mesh>
+          <mesh position={[0.35, 0.25, -0.25]}>
+             <cylinderGeometry args={[0.02, 0.02, 0.5, 8]} />
+             <meshStandardMaterial color={woodColor} roughness={0.8} />
           </mesh>
         </group>
       ))}
 
-      {/* Modern Geometric Chandelier suspended above table */}
-      <group position={[0, 1.2, 0]}>
-        {/* Support chain */}
-        <mesh position={[0, 0.2, 0]}>
-          <cylinderGeometry args={[0.008, 0.008, 0.4, 8]} />
-          <meshBasicMaterial color="#b88d30" />
-        </mesh>
-        {/* Horizontal gold ring */}
+      {/* Subtle modern geometric chandelier to balance the top */}
+      <group position={[0, 1.6, 0]}>
         <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.8, 0.025, 8, 50]} />
+          <torusGeometry args={[0.8, 0.015, 8, 50]} />
           <meshStandardMaterial color="#b88d30" metalness={0.95} roughness={0.05} />
         </mesh>
-        {/* Suspended glowing bulbs */}
-        {[0, Math.PI * 0.5, Math.PI, Math.PI * 1.5].map((angle, idx) => {
+        {[0, Math.PI, Math.PI / 2, -Math.PI / 2].map((angle, idx) => {
           const r = 0.8;
-          const lx = Math.cos(angle) * r;
-          const lz = Math.sin(angle) * r;
           return (
-            <group key={idx} position={[lx, -0.2, lz]}>
-              <mesh position={[0, 0.1, 0]}>
-                <cylinderGeometry args={[0.005, 0.005, 0.2, 8]} />
-                <meshBasicMaterial color="#b88d30" />
-              </mesh>
-              <mesh>
-                <sphereGeometry args={[0.06, 12, 12]} />
-                <meshBasicMaterial color="#ffffff" />
-              </mesh>
-              <pointLight position={[0, -0.1, 0]} intensity={1.0} distance={2.2} color="#fff2e0" />
+            <group key={idx} position={[Math.cos(angle) * r, -0.1, Math.sin(angle) * r]}>
+               <mesh>
+                 <sphereGeometry args={[0.04, 16, 16]} />
+                 <meshBasicMaterial color="#ffffff" />
+               </mesh>
+               <pointLight intensity={0.5} distance={1.5} color="#fff2e0" />
             </group>
-          );
+          )
         })}
       </group>
+    </group>
+  );
+}
+
+// A Premium Geometric Chandelier / Abstract Art Piece for Gallery
+export function PremiumGeometricChandelier({ position = [0, 0, 0], scale = 1 }) {
+  const colorGold = '#b88d30';
+  const groupRef = useRef();
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    if (groupRef.current) {
+      groupRef.current.rotation.y = time * 0.15;
+      groupRef.current.rotation.x = Math.sin(time * 0.5) * 0.05;
+    }
+  });
+
+  return (
+    <group position={position} scale={scale} ref={groupRef}>
+      {/* Central Axis */}
+      <mesh position={[0, 0, 0]}>
+        <cylinderGeometry args={[0.02, 0.02, 3, 16]} />
+        <meshStandardMaterial color={colorGold} metalness={0.9} roughness={0.1} />
+      </mesh>
+
+      {/* Floating Rings */}
+      {[0, 1, 2].map((i) => (
+        <mesh key={i} position={[0, 0.8 - i * 0.8, 0]} rotation={[Math.PI / 2 + i * 0.2, i * 0.5, 0]}>
+          <torusGeometry args={[0.6 + i * 0.2, 0.015, 16, 64]} />
+          <meshStandardMaterial color={colorGold} metalness={0.95} roughness={0.05} />
+        </mesh>
+      ))}
+
+      {/* Radiant Prisms */}
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const angle = (i * Math.PI * 2) / 6;
+        const radius = 0.8;
+        return (
+          <group key={i} position={[Math.cos(angle) * radius, 0, Math.sin(angle) * radius]}>
+            <mesh rotation={[0, angle, 0]}>
+              <octahedronGeometry args={[0.15, 0]} />
+              <meshStandardMaterial color="#ffffff" roughness={0.05} metalness={0.8} emissive="#faf6f0" emissiveIntensity={0.5} />
+            </mesh>
+            <pointLight distance={1.5} intensity={0.5} color="#FAF6F0" />
+            <mesh position={[0, 0.4, 0]}>
+              <cylinderGeometry args={[0.005, 0.005, 0.8, 8]} />
+              <meshBasicMaterial color={colorGold} />
+            </mesh>
+          </group>
+        );
+      })}
     </group>
   );
 }
@@ -562,32 +806,32 @@ export default function ThreeScene({ variant = 'hero', wireframe = false }) {
 
       {/* Render composite business-themed scene based on variant */}
       {variant === 'hero' && (
-        <ArchitecturalRoomDraftScene wireframe={wireframe} />
+        <group position={[0, -1.0, 0]}>
+          <ArchitecturalRoomDraftScene wireframe={wireframe} />
+        </group>
       )}
 
       {variant === 'about' && (
-        <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.8}>
-          <group ref={groupRef} position={[0, -1.3, 0]} scale={0.75}>
-            <SignatureLoungeChair position={[0, -0.4, 0]} scale={1.0} wireframe={wireframe} />
-          </group>
-        </Float>
+        <group ref={groupRef} position={[0, -0.2, -2]} scale={1.2}>
+          <ModernDesignInstallation position={[0, 0, 0]} scale={1.2} />
+        </group>
       )}
 
       {variant === 'services' && (
-        <group position={[0, -1.3, 0]} scale={0.75}>
+        <group position={[0, -0.4, 0]} scale={1.1}>
           <DiningRoomLayoutScene />
         </group>
       )}
 
       {variant === 'gallery' && (
-        <group position={[0, -1.4, 0]} scale={0.75}>
-          <ArchitecturalColumnPedestal position={[0, -0.2, 0]} scale={0.9} rotatingSculpture={true} />
+        <group position={[0, -0.2, 0]} scale={1.3}>
+          <PremiumGeometricChandelier position={[0, 0, 0]} />
         </group>
       )}
 
       {variant === 'about-sculpture' && (
-        <group position={[0, -0.9, 0]} scale={1.05}>
-          <ArchitecturalColumnPedestal position={[0, -0.2, 0]} scale={0.9} rotatingSculpture={true} />
+        <group position={[0, -0.2, 0]} scale={1.4}>
+          <ArchitecturalColumnPedestal position={[0, 0, 0]} scale={1.1} rotatingSculpture={true} />
         </group>
       )}
       

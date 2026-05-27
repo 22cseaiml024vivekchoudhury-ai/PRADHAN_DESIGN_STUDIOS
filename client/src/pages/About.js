@@ -73,11 +73,15 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="about-3d-box dimension-box" style={{ marginBottom: 0, height: '420px' }}>
+              <div className="about-3d-box dimension-box" style={{ marginBottom: 0, height: '420px', overflow: 'hidden' }}>
                 <div className="dimension-box__top" />
                 <div className="dimension-box__left" />
                 <div className="dimension-label-overlay" style={{ top: '-10px', left: '10px' }}>📐 DRAFT COMPONENT X: 4.8m</div>
-                <ThreeScene variant="about-sculpture" />
+                <img 
+                  src="/commercial%20projects/WhatsApp%20Image%202026-05-18%20at%2010.36.51%20(1).jpeg" 
+                  alt="Beautiful Space" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                />
               </div>
             </motion.div>
           </div>
